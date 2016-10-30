@@ -28,6 +28,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import io.apptik.widget.MultiSlider;
+import io.apptik.widget.example.multislider.R;
 
 
 public class MultiSliderFragmentMany extends Fragment {
