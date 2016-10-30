@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package io.apptik.widget.example.multislider;
+package io.apptik.example.multislider;
 
 
 import android.app.Fragment;

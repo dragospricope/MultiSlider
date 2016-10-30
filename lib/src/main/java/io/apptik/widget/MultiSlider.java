@@ -368,8 +368,8 @@ public class MultiSlider extends View {
                 .MultiSlider_android_thumb);
 
         if (thumbDrawable == null) {
-            thumbDrawable = ContextCompat.getDrawable(getContext(), io.apptik.widget.R.drawable
-                    .multislider_scrubber_control_selector_holo_light);
+            thumbDrawable = ContextCompat.getDrawable(getContext(), R.drawable
+                    .multislider_scrubber_control_selector_material);
         }
 
         Drawable range = a.getDrawable(io.apptik.widget.R.styleable.MultiSlider_range);
