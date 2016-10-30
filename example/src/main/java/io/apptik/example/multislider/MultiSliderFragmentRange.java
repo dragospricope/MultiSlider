@@ -25,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import io.apptik.widget.MultiSlider;
+import io.apptik.widget.example.multislider.R;
 
 public class MultiSliderFragmentRange extends Fragment {
 

@@ -337,7 +337,7 @@ public class MultiSlider extends View {
                 .MultiSlider_android_track);
         if (trackDrawable == null) {
             trackDrawable = ContextCompat.getDrawable(getContext(), io.apptik.widget.R.drawable
-                    .multislider_scrubber_track_holo_light);
+                    .track);
         }
 
         setTrackDrawable(getTintedDrawable(trackDrawable, a.getColor(io.apptik.widget.R.styleable
