@@ -336,8 +336,11 @@ public class MultiSlider extends View {
         Drawable trackDrawable = a.getDrawable(io.apptik.widget.R.styleable
                 .MultiSlider_android_track);
         if (trackDrawable == null) {
-            trackDrawable = ContextCompat.getDrawable(getContext(), io.apptik.widget.R.drawable
-                    .track);
+            // holo
+            //trackDrawable = ContextCompat.getDrawable(getContext(), io.apptik.widget.R.drawable
+            //        .multislider_scrubber_track_holo_light);
+            trackDrawable = ContextCompat.getDrawable(getContext(), R.drawable
+                    .multislider_scrubber_track_mtrl_alpha);
         }
 
         setTrackDrawable(getTintedDrawable(trackDrawable, a.getColor(io.apptik.widget.R.styleable
@@ -368,14 +371,21 @@ public class MultiSlider extends View {
                 .MultiSlider_android_thumb);
 
         if (thumbDrawable == null) {
+            // holo
+            //thumbDrawable = ContextCompat.getDrawable(getContext(), io.apptik.widget.R.drawable
+            //        .multislider_scrubber_control_selector_holo_light);
+
             thumbDrawable = ContextCompat.getDrawable(getContext(), R.drawable
                     .multislider_scrubber_control_selector_material);
         }
 
         Drawable range = a.getDrawable(io.apptik.widget.R.styleable.MultiSlider_range);
         if (range == null) {
-            range = ContextCompat.getDrawable(getContext(), io.apptik.widget.R.drawable
-                    .multislider_scrubber_primary_holo);
+            // holo
+            // range = ContextCompat.getDrawable(getContext(), io.apptik.widget.R.drawable
+            //.multislider_scrubber_primary_holo);
+            range = ContextCompat.getDrawable(getContext(), R.drawable
+                    .multislider_scrubber_primary_mtrl_alpha);
         }
 
         Drawable range1 = a.getDrawable(io.apptik.widget.R.styleable.MultiSlider_range1);
