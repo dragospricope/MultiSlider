@@ -438,7 +438,7 @@ public class MultiSlider extends View {
     /**
      * @return number of scale points
      */
-    private int getScaleSize() {
+    public int getScaleSize() {
         return mScaleMax - mScaleMin;
     }
 

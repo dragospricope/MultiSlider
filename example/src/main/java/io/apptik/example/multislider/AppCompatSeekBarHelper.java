@@ -25,14 +25,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.appcompat.R;
-import android.support.v7.widget.DrawableUtils;
 import android.support.v7.widget.TintTypedArray;
 import android.util.AttributeSet;
-import android.widget.SeekBar;
 
-class AppCompatSeekBarHelper extends AppCompatProgressBarHelper {
+import io.apptik.widget.MultiSlider;
 
-    private final SeekBar mView;
+class AppCompatSeekBarHelper extends ParentHelper {
+
+    private final MultiSlider mView;
 
     private Drawable mTickMark;
     private ColorStateList mTickMarkTintList = null;
@@ -40,20 +40,20 @@ class AppCompatSeekBarHelper extends AppCompatProgressBarHelper {
     private boolean mHasTickMarkTint = false;
     private boolean mHasTickMarkTintMode = false;
 
-    AppCompatSeekBarHelper(SeekBar view) {
+    AppCompatSeekBarHelper(MultiSlider view) {
         super(view);
         mView = view;
     }
 
     @Override
     void loadFromAttributes(AttributeSet attrs, int defStyleAttr) {
-        super.loadFromAttributes(attrs, defStyleAttr);
+        //super.loadFromAttributes(attrs, defStyleAttr);
 
         TintTypedArray a = TintTypedArray.obtainStyledAttributes(mView.getContext(), attrs,
                 R.styleable.AppCompatSeekBar, defStyleAttr, 0);
         final Drawable drawable = a.getDrawableIfKnown(R.styleable.AppCompatSeekBar_android_thumb);
         if (drawable != null) {
-            mView.setThumb(drawable);
+            mView.getThumb(0);
         }
 
         final Drawable tickMark = a.getDrawable(R.styleable.AppCompatSeekBar_tickMark);
@@ -71,21 +71,28 @@ class AppCompatSeekBarHelper extends AppCompatProgressBarHelper {
         }
 
         a.recycle();
-
+        setTickMarkTintMode(PorterDuff.Mode.DARKEN);
         applyTickMarkTint();
     }
 
     static PorterDuff.Mode parseTintMode(int value, PorterDuff.Mode defaultMode) {
         switch (value) {
-            case 3: return PorterDuff.Mode.SRC_OVER;
-            case 5: return PorterDuff.Mode.SRC_IN;
-            case 9: return PorterDuff.Mode.SRC_ATOP;
-            case 14: return PorterDuff.Mode.MULTIPLY;
-            case 15: return PorterDuff.Mode.SCREEN;
-            case 16: return Build.VERSION.SDK_INT >= 11
-                    ? PorterDuff.Mode.valueOf("ADD")
-                    : defaultMode;
-            default: return defaultMode;
+            case 3:
+                return PorterDuff.Mode.SRC_OVER;
+            case 5:
+                return PorterDuff.Mode.SRC_IN;
+            case 9:
+                return PorterDuff.Mode.SRC_ATOP;
+            case 14:
+                return PorterDuff.Mode.MULTIPLY;
+            case 15:
+                return PorterDuff.Mode.SCREEN;
+            case 16:
+                return Build.VERSION.SDK_INT >= 11
+                        ? PorterDuff.Mode.valueOf("ADD")
+                        : defaultMode;
+            default:
+                return defaultMode;
         }
     }
 
@@ -176,7 +183,7 @@ class AppCompatSeekBarHelper extends AppCompatProgressBarHelper {
      */
     void drawTickMarks(Canvas canvas) {
         if (mTickMark != null) {
-            final int count = mView.getMax();
+            final int count = mView.getScaleSize();
             if (count > 1) {
                 final int w = mTickMark.getIntrinsicWidth();
                 final int h = mTickMark.getIntrinsicHeight();

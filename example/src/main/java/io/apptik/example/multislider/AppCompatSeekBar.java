@@ -22,13 +22,15 @@ import android.support.v7.appcompat.R;
 import android.util.AttributeSet;
 import android.widget.SeekBar;
 
+import io.apptik.widget.MultiSlider;
+
 /**
  * A {@link SeekBar} which supports compatible features on older version of the platform.
  *
  * <p>This will automatically be used when you use {@link SeekBar} in your layouts.
  * You should only need to manually use this class when writing custom views.</p>
  */
-public class AppCompatSeekBar extends SeekBar {
+public class AppCompatSeekBar extends MultiSlider {
 
     private AppCompatSeekBarHelper mAppCompatSeekBarHelper;
 
@@ -43,25 +45,25 @@ public class AppCompatSeekBar extends SeekBar {
     public AppCompatSeekBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        //mAppCompatSeekBarHelper = new AppCompatSeekBarHelper(this);
-        //mAppCompatSeekBarHelper.loadFromAttributes(attrs, defStyleAttr);
+        mAppCompatSeekBarHelper = new AppCompatSeekBarHelper(this);
+        mAppCompatSeekBarHelper.loadFromAttributes(attrs, defStyleAttr);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        //mAppCompatSeekBarHelper.drawTickMarks(canvas);
+        mAppCompatSeekBarHelper.drawTickMarks(canvas);
     }
 
     @Override
     protected void drawableStateChanged() {
         super.drawableStateChanged();
-        //mAppCompatSeekBarHelper.drawableStateChanged();
+        mAppCompatSeekBarHelper.drawableStateChanged();
     }
 
     @Override
     public void jumpDrawablesToCurrentState() {
         super.jumpDrawablesToCurrentState();
-        //mAppCompatSeekBarHelper.jumpDrawablesToCurrentState();
+        mAppCompatSeekBarHelper.jumpDrawablesToCurrentState();
     }
 }
