@@ -370,13 +370,18 @@ public class MultiSlider extends View {
         Drawable thumbDrawable = a.getDrawable(io.apptik.widget.R.styleable
                 .MultiSlider_android_thumb);
 
+
         if (thumbDrawable == null) {
             // holo
-            //thumbDrawable = ContextCompat.getDrawable(getContext(), io.apptik.widget.R.drawable
-            //        .multislider_scrubber_control_selector_holo_light);
+//            thumbDrawable = ContextCompat.getDrawable(getContext(), io.apptik.widget.R.drawable
+//                    .multislider_scrubber_control_selector_holo_light);
+
+//            thumbDrawable = ContextCompat.getDrawable(getContext(), R.drawable
+//                    .multislider_scrubber_control_selector_material);
 
             thumbDrawable = ContextCompat.getDrawable(getContext(), R.drawable
-                    .multislider_scrubber_control_selector_material);
+                    .multislider_thumb_material);
+
         }
 
         Drawable range = a.getDrawable(io.apptik.widget.R.styleable.MultiSlider_range);
@@ -670,8 +675,19 @@ public class MultiSlider extends View {
 
             mThumb.setRange(rangeDrawable);
 
-            Drawable newDrawable = getTintedDrawable(thumb.getConstantState().newDrawable(), a
-                    .getColor(io.apptik.widget.R.styleable.MultiSlider_thumbColor, 0));
+            int tColor;
+            tColor = a.getColor(io.apptik.widget.R.styleable.MultiSlider_thumbColor, 0);
+
+            if(tColor == 0) {
+                TypedArray aa = getContext().getTheme().obtainStyledAttributes(new int[]{ R.attr.colorAccent});
+                try {
+                   tColor = aa.getColor(0, 0);
+                } finally {
+                    aa.recycle();
+                }
+            }
+            Drawable newDrawable = getTintedDrawable(thumb.getConstantState().newDrawable(), tColor);
+
             newDrawable.setCallback(this);
 
             // Assuming the thumb drawable is symmetric, set the thumb offset
@@ -1579,6 +1595,18 @@ public class MultiSlider extends View {
         }
         return drawable;
     }
+
+    @Override
+    public void drawableHotspotChanged(float x, float y) {
+        super.drawableHotspotChanged(x, y);
+        for (Thumb thumb : mThumbs) {
+            if (thumb.getThumb() != null) {
+                thumb.getThumb().setHotspot(x, y);
+            }
+        }
+
+    }
+
 
     /**
      * Void listener helper

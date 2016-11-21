@@ -24,11 +24,11 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.ViewCompat;
-import android.support.v7.appcompat.R;
 import android.support.v7.widget.TintTypedArray;
 import android.util.AttributeSet;
 
 import io.apptik.widget.MultiSlider;
+import io.apptik.widget.example.multislider.R;
 
 class AppCompatSeekBarHelper extends ParentHelper {
 
@@ -47,13 +47,13 @@ class AppCompatSeekBarHelper extends ParentHelper {
 
     @Override
     void loadFromAttributes(AttributeSet attrs, int defStyleAttr) {
-        //super.loadFromAttributes(attrs, defStyleAttr);
+        super.loadFromAttributes(attrs, defStyleAttr);
 
         TintTypedArray a = TintTypedArray.obtainStyledAttributes(mView.getContext(), attrs,
-                R.styleable.AppCompatSeekBar, defStyleAttr, 0);
-        final Drawable drawable = a.getDrawableIfKnown(R.styleable.AppCompatSeekBar_android_thumb);
+                R.styleable.MultiSlider, defStyleAttr, 0);
+        final Drawable drawable = a.getDrawableIfKnown(R.styleable.MultiSlider_android_thumb);
         if (drawable != null) {
-            mView.getThumb(0);
+            mView.getThumb(0).setThumb(drawable);
         }
 
         final Drawable tickMark = a.getDrawable(R.styleable.AppCompatSeekBar_tickMark);

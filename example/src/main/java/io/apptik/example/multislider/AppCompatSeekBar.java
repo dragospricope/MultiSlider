@@ -18,7 +18,6 @@ package io.apptik.example.multislider;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.support.v7.appcompat.R;
 import android.util.AttributeSet;
 import android.widget.SeekBar;
 
@@ -39,7 +38,8 @@ public class AppCompatSeekBar extends MultiSlider {
     }
 
     public AppCompatSeekBar(Context context, AttributeSet attrs) {
-        this(context, attrs, R.attr.seekBarStyle);
+        //this(context, attrs, R.attr.seekBarStyle);
+        this(context, attrs, io.apptik.widget.R.attr.multiSliderStyle);
     }
 
     public AppCompatSeekBar(Context context, AttributeSet attrs, int defStyleAttr) {

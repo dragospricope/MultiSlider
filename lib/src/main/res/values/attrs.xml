@@ -38,6 +38,8 @@
 
         <attr name="android:track"/>
 
+        <attr name="android:thumbTintMode"/>
+
         <attr name="range" format="reference"/>
 
         <attr name="mirrorForRTL" format="boolean"/>
